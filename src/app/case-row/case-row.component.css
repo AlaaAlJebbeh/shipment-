@@ -1,0 +1,140 @@
+:root {
+  --default-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Ubuntu, "Helvetica Neue", Helvetica, Arial, "PingFang SC",
+    "Hiragino Sans GB", "Microsoft Yahei UI", "Microsoft Yahei",
+    "Source Han Sans CN", sans-serif;
+}
+
+.main-container {
+  overflow: hidden;
+}
+
+.main-container,
+.main-container * {
+  box-sizing: border-box;
+}
+
+input,
+select,
+textarea,
+button {
+  outline: 0;
+}
+
+
+.main-container {
+    width: 1555px;
+    height: 170px;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center; /* Vertically center children */
+    margin-top: 30px;
+    
+  }
+  
+  .rowinfo {
+    width: fit-content;
+    position: relative;
+    justify-content: center;
+    height: fit-content;
+    margin-top: -50px;
+    margin-left: 60px;
+  }
+.rectangle {
+  position: absolute;
+  width: 157px;
+  height: 49px;
+  top: 0;
+  left: 356px;
+  background: #10e545;
+  z-index: 4;
+}
+.partially-shipped {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  top: 2px;
+  left: 98px;
+  z-index: 6;
+}
+.shipped {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  top: 2px;
+  left: 107px;
+  background-size: contain;
+  z-index: 7;
+}
+.delivered {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: absolute;
+  height: 35px;
+  top: 7px;
+  left: 10px;
+  color: #000000;
+  font-family: Jockey One, var(--default-font-family);
+  font-size: 25px;
+  font-weight: 400;
+  line-height: 34.948px;
+  text-align: left;
+  white-space: nowrap;
+  z-index: 5;
+}
+.name {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: absolute;
+  height: 35px;
+  top: 7px;
+  left: 174px;
+  color: #000000;
+  font-family: Jockey One, var(--default-font-family);
+  font-size: 25px;
+  font-weight: 400;
+  line-height: 34.948px;
+  text-align: left;
+  white-space: nowrap;
+  z-index: 2;
+}
+.no-track {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: absolute;
+  height: 35px;
+  top: 7px;
+  left: 567px;
+  color: #000000;
+  font-family: Jockey One, var(--default-font-family);
+  font-size: 25px;
+  font-weight: 400;
+  line-height: 34.948px;
+  text-align: left;
+  white-space: nowrap;
+  z-index: 1;
+}
+.no-case {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: absolute;
+  height: 35px;
+  top: 7px;
+  left: 0;
+  color: #000000;
+  font-family: Jockey One, var(--default-font-family);
+  font-size: 25px;
+  font-weight: 400;
+  line-height: 34.948px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.time-line{
+    margin-left: 900px;
+    width: fit-content;
+}

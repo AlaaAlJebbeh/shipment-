@@ -1,0 +1,20 @@
+<div class="table-bg">
+  <div class="main-container">
+    <div class="rowinfo">
+      <div class="rectangle">
+        @if(statusShip() === 'delivered'){
+        <img src="delivered.png" />
+        } @else{
+        <img src="shipped.png" />
+        }
+      </div>
+      <span class="name">{{patientName()}}</span
+      ><span class="no-track">{{trackingNumber()}}</span
+      ><span class="no-case">{{caseNumber()}}</span>
+    </div>
+
+    <div class="time-line">
+      <app-time-line [status]="status()"/>
+    </div>
+  </div>
+</div>
