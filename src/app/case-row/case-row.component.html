@@ -2,7 +2,7 @@
   <div class="main-container">
     <div class="rowinfo">
       <div class="rectangle">
-        @if(statusShip() === 'delivered'){
+        @if(status() === 'delivered'){
         <img src="delivered.png" />
         } @else{
         <img src="shipped.png" />
@@ -14,7 +14,7 @@
     </div>
 
     <div class="time-line">
-      <app-time-line [status]="status()" [trackingNumber]="trackingNumber()" />
+      <app-time-line [trackingNumber]="trackingNumber()" (statusOut)="handleStatusChange($event)" />
     </div>
   </div>
 </div>

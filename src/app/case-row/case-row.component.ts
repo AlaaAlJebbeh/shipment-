@@ -13,24 +13,18 @@ export class CaseRowComponent {
   caseNumber = input<string>('129565926');
   patientName = input<string>('Alaa Al Jebbeh');
   trackingNumber = input<string>('215149616982');
-  statusIn = input<'shipping' | 'intransit' | 'outfordelivery' | 'delivered' | 'notfound'>('shipping');
-
-  status =  signal<'shipping' | 'intransit' | 'outfordelivery' | 'delivered' | 'notfound'>('delivered');
-
-  statusOut = output<'shipping' | 'intransit' | 'outfordelivery' | 'delivered' | 'notfound'>();
+  status =  signal<'shipping' | 'intransit' | 'outfordelivery' | 'delivered' | 'notfound'>('shipping');
+  trackingNoOUt = output<string>();
 
 
+/*   get statusShip() {
+    //return this.statusIn();
+  } */
 
-  ngOnInit() {
-    this.status.set(this.statusIn());
-    this.statusOut.emit(this.status());
-    console.log(this.status());
-
-
-    
+  handleStatusChange(status: 'shipping' | 'intransit' | 'outfordelivery' | 'delivered' | 'notfound') {
+    this.status.set(status);
+    console.log('Status received from child:', status);
+    // Further handling in the parent component
   }
 
-  get statusShip() {
-    return this.status;
-  }
 }
