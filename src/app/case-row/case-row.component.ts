@@ -1,6 +1,5 @@
 import { Component, inject, input, output, signal } from '@angular/core';
 import { TimeLineComponent } from '../time-line/time-line.component';
-import { APIService } from '../api.service';
 
 @Component({
   selector: 'app-case-row',
@@ -17,14 +16,9 @@ export class CaseRowComponent {
   trackingNoOUt = output<string>();
 
 
-/*   get statusShip() {
-    //return this.statusIn();
-  } */
-
   handleStatusChange(status: 'shipping' | 'intransit' | 'outfordelivery' | 'delivered' | 'notfound') {
     this.status.set(status);
     console.log('Status received from child:', status);
-    // Further handling in the parent component
   }
 
 }

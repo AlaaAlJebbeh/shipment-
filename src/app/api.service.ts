@@ -12,9 +12,10 @@ export class APIService {
   private httpClient = inject(HttpClient);
 
   postTracking(): Observable<any> {
+    const trackingNumber = '215149814514';
 
     console.log(this.apiUrl);
-    return this.postRequest(this.apiUrl).pipe(
+    return this.postRequest(this.apiUrl, trackingNumber).pipe(
       tap(response => {
         // Log the response for debugging
         console.log('Response in APIService:', response);
@@ -33,16 +34,25 @@ export class APIService {
     );
   }
 
-  private postRequest(url: string): Observable<any> {
+  private postRequest(url: string, trackingNumber: string): Observable<any> {
+    let courierCode: string = '';
     const headers = new HttpHeaders({
       "Tracking-Api-Key": this.apiKey,  // Ensure correct header key
       "Content-Type": "application/json",
     });
+    const length = trackingNumber.length;
+    if (length === 10) {
+      courierCode = 'dhl-global-logistics';
+    } else if (length === 12) {
+      courierCode = 'smsa-express';
+    } else {
+      courierCode = 'unknown';
+    }
 
     // Make sure to check the required structure of the request body
     const body = {
-      tracking_number: '215149695646',
-      courier_code: 'smsa-express',
+      tracking_number: trackingNumber,
+      courier_code: courierCode,
     };
 
     console.log('Headers:', headers);
@@ -50,6 +60,8 @@ export class APIService {
 
     return this.httpClient.post<any>(url,body, {headers});
   }
+
+  
 
   
   getTrackingDetails(trackingNumbers: string): Observable<any> {
@@ -64,4 +76,6 @@ export class APIService {
     // Make the GET request
     return this.httpClient.get<any>(url, { headers });
   }
+
+  
 }

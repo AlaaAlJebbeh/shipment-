@@ -1,5 +1,13 @@
-import { Component, inject, input, OnInit, output, signal } from '@angular/core';
+import {
+  Component,
+  inject,
+  input,
+  OnInit,
+  output,
+  signal,
+} from '@angular/core';
 import { APIService } from '../api.service';
+import { interval, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-time-line',
@@ -15,16 +23,39 @@ export class TimeLineComponent implements OnInit {
   deliveredDate: string | null = '';
   trackingNumber = input<string>('215149283351');
 
-  status =  signal<'shipping' | 'intransit' | 'outfordelivery' | 'delivered' | 'notfound'>('shipping');
-  statusOut = output<'shipping' | 'intransit' | 'outfordelivery' | 'delivered' | 'notfound'>();
-
-
+  status = signal<
+    'shipping' | 'intransit' | 'outfordelivery' | 'delivered' | 'notfound'
+  >('shipping');
+  statusOut = output<
+    'shipping' | 'intransit' | 'outfordelivery' | 'delivered' | 'notfound'
+  >();
 
   private apiService = inject(APIService);
   trackingData: any;
 
+  private subscription: Subscription = new Subscription();
+    private refreshInterval: number = 300000; // 5 seconds for testing
+
   ngOnInit() {
-    console.log('child' + this.status);
+    this.fetchTrackingDetails();
+
+    // Set interval to call fetchTrackingDetails every 5 seconds
+    const intervalSubscription = interval(this.refreshInterval).subscribe(() => {
+      this.fetchTrackingDetails();
+    });
+
+    this.subscription.add(intervalSubscription);
+  }
+
+  ngOnDestroy() {
+    // Unsubscribe from the interval to avoid memory leaks
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
+  fetchTrackingDetails() {
+    console.log('updated 5 min');
 
     this.apiService.getTrackingDetails(this.trackingNumber()).subscribe({
       next: (response) => {
@@ -45,13 +76,23 @@ export class TimeLineComponent implements OnInit {
           );
           this.shippingDate = this.formatDate(milestoneDates.pickup_date);
           this.inTransitDate = this.getInTransitDate(originInfo.trackinfo);
+
+          if (this.trackingNumber().length === 10) {
+            this.outForDeliveryDate = this.getOutForDeliveryDateFromTrackInfo(
+              originInfo.trackinfo,
+              this.trackingData.data[0].destination_country
+            );
+          }
+
           console.log('Delivery Date:', this.deliveredDate);
           console.log('Out for Delivery Date:', this.outForDeliveryDate);
           console.log('Pickup Date:', this.shippingDate);
-          console.log('Info Received Date:', this.inTransitDate); 
+          console.log('Info Received Date:', this.inTransitDate);
 
           this.updateStatus();
-          console.log('the status in time line after update is' + this.status())
+          console.log(
+            'the status in time line after update is' + this.status()
+          );
           this.statusOut.emit(this.status());
         } else {
           console.log('No tracking data available.');
@@ -62,10 +103,6 @@ export class TimeLineComponent implements OnInit {
         console.error('API call error:', error.message);
       },
     });
-
-
-
-
   }
 
   // Helper function to format date
@@ -89,18 +126,31 @@ export class TimeLineComponent implements OnInit {
     return null;
   }
 
+  getOutForDeliveryDateFromTrackInfo(trackinfo: any[], destinationCountry: string): string | null {
+    for (let i = trackinfo.length - 1; i >= 0; i--) {
+      const checkpoint = trackinfo[i];
+      if (checkpoint.country_iso2 === destinationCountry) {
+        return this.formatDate(checkpoint.checkpoint_date);
+      }
+    }
+    return null;
+  }
+
   updateStatus(): void {
     if (this.deliveredDate && this.deliveredDate.trim() !== '          ') {
       this.status.set('delivered');
-    } else if (this.outForDeliveryDate && this.outForDeliveryDate.trim() !== '          ') {
+    } else if (
+      this.outForDeliveryDate &&
+      this.outForDeliveryDate.trim() !== '          '
+    ) {
       this.status.set('outfordelivery');
-    } else if (this.inTransitDate && this.inTransitDate.trim() !== '          ') {
+    } else if (
+      this.inTransitDate &&
+      this.inTransitDate.trim() !== '          '
+    ) {
       this.status.set('intransit');
     } else {
       this.status.set('shipping');
     }
   }
-
-
-
 }
