@@ -1,20 +1,22 @@
 import { JsonPipe } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CaseRowComponent } from './case-row/case-row.component';
 import { TableHeaderComponent } from './table-header/table-header.component';
 import { APIService } from './api.service';
+import { SearchBarComponent } from "./search-bar/search-bar.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, JsonPipe, CaseRowComponent, TableHeaderComponent],
+  imports: [RouterOutlet, JsonPipe, CaseRowComponent, TableHeaderComponent, SearchBarComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
   private apiService = inject(APIService);
   trackingData: any;
+  searchData =  signal<string>('');
 
   ngOnInit(): void {
 
@@ -58,7 +60,6 @@ export class AppComponent implements OnInit {
       }
     });
 
-
     /* this.apiService.postTracking().subscribe({
       next: (response) => {
         // Handle the successful response here
@@ -70,5 +71,9 @@ export class AppComponent implements OnInit {
         console.error('API call error:', error);
       }
     }); */
+  }
+
+  handleSearchData(datainput: string){
+    this.searchData.set(datainput);
   }
 }

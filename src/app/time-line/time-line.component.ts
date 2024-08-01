@@ -34,15 +34,20 @@ export class TimeLineComponent implements OnInit {
   trackingData: any;
 
   private subscription: Subscription = new Subscription();
-    private refreshInterval: number = 300000; // 5 seconds for testing
+  private refreshInterval: number = 300000; // 5 seconds for testing
+
+  searchData = signal<string>('');
+
 
   ngOnInit() {
     this.fetchTrackingDetails();
 
     // Set interval to call fetchTrackingDetails every 5 seconds
-    const intervalSubscription = interval(this.refreshInterval).subscribe(() => {
-      this.fetchTrackingDetails();
-    });
+    const intervalSubscription = interval(this.refreshInterval).subscribe(
+      () => {
+        this.fetchTrackingDetails();
+      }
+    );
 
     this.subscription.add(intervalSubscription);
   }
@@ -126,7 +131,10 @@ export class TimeLineComponent implements OnInit {
     return null;
   }
 
-  getOutForDeliveryDateFromTrackInfo(trackinfo: any[], destinationCountry: string): string | null {
+  getOutForDeliveryDateFromTrackInfo(
+    trackinfo: any[],
+    destinationCountry: string
+  ): string | null {
     for (let i = trackinfo.length - 1; i >= 0; i--) {
       const checkpoint = trackinfo[i];
       if (checkpoint.country_iso2 === destinationCountry) {
@@ -153,4 +161,9 @@ export class TimeLineComponent implements OnInit {
       this.status.set('shipping');
     }
   }
+
+  handleSearchData(datainput: string) {
+    this.searchData.set(datainput);
+  }
+
 }
