@@ -1,27 +1,114 @@
-# Shipment
+<p align="center">
+  <a href="" rel="noopener">
+ <img width=200px height=200px src="https://i.imgur.com/6wj0hh6.jpg" alt="Project logo"></a>
+</p>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.7.
+<h3 align="center">shipment</h3>
 
-## Development server
+<div align="center">
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+[![GitHub Clone](https://github.com/AlaaAlJebbeh/shipment-.git)]
 
-## Code scaffolding
+</div>
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+---
 
-## Build
+<p align="center"> Few lines describing your project.
+    <br> 
+</p>
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## 📝 Table of Contents
 
-## Running unit tests
+- [About](#about)
+- [Getting Started](#getting_started)
+- [Deployment](#deployment)
+- [Usage](#usage)
+- [Built Using](#built_using)
+- [TODO](../TODO.md)
+- [Contributing](../CONTRIBUTING.md)
+- [Authors](#authors)
+- [Acknowledgments](#acknowledgement)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## 🧐 About <a name = "about"></a>
 
-## Running end-to-end tests
+This Angular project integrates with the Tracking More API to provide comprehensive shipment tracking functionality for Parisaline Clear Aligners, a dental project. The application allows users to monitor their orders by displaying key shipment milestones, including the shipped date, in transit date, out for delivery date, and delivered date. It provides real-time updates on the status of each shipment, indicating whether it is currently in the shipping process or has been delivered. By leveraging this detailed tracking information, the project ensures that users can easily follow their orders' progress and stay informed throughout the delivery journey.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## 🏁 Getting Started <a name = "getting_started"></a>
 
-## Further help
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+Open Terminal/Command Prompt
+Clone the Repository: git clone <https://github.com/AlaaAlJebbeh/shipment-.git>
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+### Prerequisites
+Node.js
+npm
+Angular CLI
+
+
+### Installing
+
+If you haven’t installed Node.js and npm yet, you need to install them. Angular requires Node.js and npm to run.
+
+Download and Install Node.js:
+
+Go to Node.js official website.
+Download the latest LTS version.
+Follow the installation instructions.
+Verify Installation:
+
+bash
+Copy code
+node -v
+npm -v
+These commands will display the installed versions of Node.js and npm.
+
+3. Install Angular CLI
+Angular CLI is a command-line interface for Angular.
+
+Install Angular CLI Globally:
+
+bash
+Copy code
+npm install -g @angular/cli
+Verify Angular CLI Installation:
+
+bash
+Copy code
+ng version
+This command will display the installed version of Angular CLI.
+
+4. Install Project Dependencies
+Install Project Dependencies Using npm:
+bash
+Copy code
+npm install
+This command will read the package.json file and install all the dependencies required for the project.
+5. Run the Angular Project
+Start the Development Server:
+
+bash
+Copy code
+npm start
+By default, this will serve the project at http://localhost:4200/.
+
+Open a Browser and Navigate to http://localhost:4200/ to view the running application.
+
+
+
+## 🎈 Usage <a name="usage"></a>
+
+Add notes about how to use the system.
+
+
+## ⛏️ Built Using <a name = "built_using"></a>
+
+- [Angular](https://angular.dev/) - Frontend Framework
+
+## ✍️ Authors <a name = "authors"></a>
+
+- [@AlaaAlJebbeh](https://github.com/AlaaAlJebbeh) - Initial work
+
+See also the list of [contributors](Mr.Yaseen) who participated in this project.
+
+
