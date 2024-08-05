@@ -1,35 +1,28 @@
 <div class="main-container">
   <div class="flex-row-c">
+    <!-- Display dates based on the current status -->
     @if(status() === 'delivered'){
-        <span class="date" name="shippingdate">{{shippingDate}}</span>
-        <span class="date-1" name="intransitdate">{{inTransitDate}}</span>
-        <span class="date-2" name="outfordeliverydate">{{outForDeliveryDate}}</span
-        ><span class="time-line" name="delivereddate">{{deliveredDate}}</span>
-    } @else if(status() === 'intransit'){
-        <span class="date" name="shippingdate">{{shippingDate}}</span>
-        <span class="date-1" name="intransitdate">{{inTransitDate}}</span>
-        <span class="date-2 hidden" name="outfordeliverydate">{{outForDeliveryDate}}</span>
-        <span class="time-line hidden" name="delivereddate">{{deliveredDate}}</span>
+    <span class="date" name="shippingdate">{{ shippingDate }}</span>
+    <span class="date-1" name="intransitdate">{{ inTransitDate }}</span>
+    <span class="date-2" name="outfordeliverydate">{{
+      outForDeliveryDate
+    }}</span
+    ><span class="time-line" name="delivereddate">{{ deliveredDate }}</span>
     } @else if(status() === 'outfordelivery'){
-        <span class="date" name="shippingdate">{{shippingDate}}</span>
-        <span class="date-1" name="intransitdate">{{inTransitDate}}</span>
-        <span class="date-2" name="outfordeliverydate">{{outForDeliveryDate}}</span>
-        <span class="time-line hidden" name="delivereddate">{{deliveredDate}}</span>
+    <span class="date" name="shippingdate">{{ shippingDate }}</span>
+    <span class="date-1" name="intransitdate">{{ inTransitDate }}</span>
+    <span class="date-2" name="outfordeliverydate">{{
+      outForDeliveryDate
+    }}</span>
+    }@else if(status() === 'intransit'){
+    <span class="date" name="shippingdate">{{ shippingDate }}</span>
+    <span class="date-1" name="intransitdate">{{ inTransitDate }}</span>
     } @else if(status() === 'shipping'){
-        <span class="date" name="shippingdate">{{shippingDate}}</span>
-        <span class="date-1 hidden" name="intransitdate">{{inTransitDate}}</span>
-        <span class="date-2 hidden" name="outfordeliverydate">{{outForDeliveryDate}}</span>
-        <span class="time-line hidden" name="delivereddate">{{deliveredDate}}</span>
-    } @else {
-        <span class="date hidden" name="shippingdate">{{shippingDate}}</span>
-        <span class="date-1 hidden" name="intransitdate">{{inTransitDate}}</span>
-        <span class="date-2 hidden" name="outfordeliverydate">{{outForDeliveryDate}}</span>
-        <span class="time-line hidden" name="delivereddate">{{deliveredDate}}</span>
-
+    <span class="date" name="shippingdate">{{ shippingDate }}</span>
     }
-
   </div>
   <div class="time-line-3">
+    <!-- Display timeline image based on the current status -->
     @if(status() === 'delivered'){
     <img src="deliveredtimeline.png" />
     } @else if(status() === 'intransit'){
@@ -41,6 +34,7 @@
     }
   </div>
   <div class="flex-row-ec">
+    <!-- Display status labels -->
     <span class="shipping">Shipping</span
     ><span class="in-transit">In Transit</span
     ><span class="out-for-delivery">Out for Delivery</span

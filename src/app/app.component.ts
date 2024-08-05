@@ -19,8 +19,10 @@ export class AppComponent implements OnInit {
   searchData =  signal<string>('');
 
   ngOnInit(): void {
+    // Define a sample tracking number for fetching data
 
     const trackingNumbers = '215149370230';
+    // Make a call to the API to get tracking details for the given tracking number
 
     this.apiService.getTrackingDetails(trackingNumbers).subscribe({
       next: (response) => {

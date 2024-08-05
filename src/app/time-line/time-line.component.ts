@@ -9,6 +9,10 @@ import {
 import { APIService } from '../api.service';
 import { interval, Subscription } from 'rxjs';
 
+/**
+ * Defines the TimeLineComponent with a selector, imports, template, and style.
+ */
+
 @Component({
   selector: 'app-time-line',
   standalone: true,
@@ -17,11 +21,18 @@ import { interval, Subscription } from 'rxjs';
   styleUrl: './time-line.component.css',
 })
 export class TimeLineComponent implements OnInit {
+  /**
+   * Properties for storing date and tracking information.
+   */
   shippingDate: string | null = '';
   inTransitDate: string | null = '';
   outForDeliveryDate: string | null = '';
   deliveredDate: string | null = '';
   trackingNumber = input<string>('215149283351');
+
+  /**
+   * Signal properties for tracking status.
+   */
 
   status = signal<
     'shipping' | 'intransit' | 'outfordelivery' | 'delivered' | 'notfound'
@@ -30,14 +41,25 @@ export class TimeLineComponent implements OnInit {
     'shipping' | 'intransit' | 'outfordelivery' | 'delivered' | 'notfound'
   >();
 
+  /**
+   * Injects the API service.
+   */
+
   private apiService = inject(APIService);
   trackingData: any;
+
+  /**
+   * Subscription and interval for refreshing data.
+   */
 
   private subscription: Subscription = new Subscription();
   private refreshInterval: number = 300000; // 5 seconds for testing
 
   searchData = signal<string>('');
 
+  /**
+   * Initializes component and sets up interval for data refresh.
+   */
 
   ngOnInit() {
     this.fetchTrackingDetails();
@@ -52,6 +74,10 @@ export class TimeLineComponent implements OnInit {
     this.subscription.add(intervalSubscription);
   }
 
+  /**
+   * Cleans up subscription on component destruction.
+   */
+
   ngOnDestroy() {
     // Unsubscribe from the interval to avoid memory leaks
     if (this.subscription) {
@@ -59,12 +85,26 @@ export class TimeLineComponent implements OnInit {
     }
   }
 
+  /**
+   * Fetches tracking details from the API.
+   * Handle successful response
+   * get the originInfo array
+   * set milestoneDates if origin info exist
+   * Extract deliveredDate, outForDeliveryDate, shippingDate from the milestoneDates
+   * Using the formatDate function
+   * Extract inTransitDate through calling another function getInTransitDate
+   * since the inTransitDate info doesn't exist in the milestonDates
+   * Handling the case of dhl tracking number 10 digits
+   * get the out for delivery date from another function getOutForDeliveryDateFromTrackInfo
+   * since the outForDeliveryDate info doesn't exist in the milestonDates in the dhl requests
+   * calling the updateStatus function
+   */
+
   fetchTrackingDetails() {
     console.log('updated 5 min');
 
     this.apiService.getTrackingDetails(this.trackingNumber()).subscribe({
       next: (response) => {
-        // Handle successful response
         this.trackingData = response;
         if (
           this.trackingData &&
@@ -110,6 +150,13 @@ export class TimeLineComponent implements OnInit {
     });
   }
 
+  /**
+   * Formats a date string into a specific format (DD/MM/YYYY).
+   *
+   * dateString - The date string to be formatted.
+   * returns The formatted date string or null if the input is null.
+   */
+
   // Helper function to format date
   formatDate = (dateString: string | null): string | null => {
     if (dateString) {
@@ -122,14 +169,32 @@ export class TimeLineComponent implements OnInit {
     return null;
   };
 
+  /**
+   * Extracts and formats the in-transit date from the tracking information.
+   *
+   * trackinfo - The tracking information array.
+   * return The formatted in-transit date or null if not available.
+   */
+
   getInTransitDate(trackinfo: any[]): string | null {
     if (trackinfo && trackinfo.length > 1) {
       // Get the second-to-last object in the array
       const secondToLastCheckpoint = trackinfo[trackinfo.length - 2];
+      console.log('check transit function');
+      console.log(secondToLastCheckpoint);
       return this.formatDate(secondToLastCheckpoint.checkpoint_date);
     }
     return null;
   }
+
+  /**
+   * Extracts and formats the out-for-delivery date from the tracking information based on the destination country.
+   *
+   * trackinfo - The tracking information array.
+   * destinationCountry - The ISO2 code of the destination country.
+   * get the first object from the end where country_iso2 === destinationCountry
+   * returns The formatted out-for-delivery date or null if not available.
+   */
 
   getOutForDeliveryDateFromTrackInfo(
     trackinfo: any[],
@@ -144,26 +209,26 @@ export class TimeLineComponent implements OnInit {
     return null;
   }
 
+  /**
+   * Updates the status of the shipment based on the available dates.
+   * Sets the status to 'delivered', 'outfordelivery', 'intransit', 'shipping', or 'notfound' accordingly.
+   */
+
   updateStatus(): void {
-    if (this.deliveredDate && this.deliveredDate.trim() !== '          ') {
+    if (this.deliveredDate) {
       this.status.set('delivered');
-    } else if (
-      this.outForDeliveryDate &&
-      this.outForDeliveryDate.trim() !== '          '
-    ) {
+    } else if (this.outForDeliveryDate) {
       this.status.set('outfordelivery');
-    } else if (
-      this.inTransitDate &&
-      this.inTransitDate.trim() !== '          '
-    ) {
+    } else if (this.inTransitDate) {
       this.status.set('intransit');
-    } else {
+    } else if (this.shippingDate) {
       this.status.set('shipping');
+    } else {
+      this.status.set('notfound');
     }
   }
 
   handleSearchData(datainput: string) {
     this.searchData.set(datainput);
   }
-
 }
