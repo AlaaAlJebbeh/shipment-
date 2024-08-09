@@ -21,25 +21,25 @@ button {
   outline: 0;
 }
 
-
 .main-container {
-    width: 1555px;
-    height: 170px;
-    background-color: #ffffff;
-    display: flex;
-    align-items: center; /* Vertically center children */
-    margin-top: 30px;
-    
-  }
-  
-  .rowinfo {
-    width: fit-content;
-    position: relative;
-    justify-content: center;
-    height: fit-content;
-    margin-top: -50px;
-    margin-left: 60px;
-  }
+  height: 170px;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center; /* Vertically center children */
+  margin-top: 30px;
+  font-size: 25px;
+  font-weight: 400;
+}
+
+.rowinfo {
+  display: inline-flex;
+  width: fit-content;
+  position: relative;
+  justify-content: center;
+  height: fit-content;
+  margin-top: -50px;
+  margin-left: 60px;
+}
 .rectangle {
   position: absolute;
   width: 157px;
@@ -76,8 +76,6 @@ button {
   left: 10px;
   color: #000000;
   font-family: Jockey One, var(--default-font-family);
-  font-size: 25px;
-  font-weight: 400;
   line-height: 34.948px;
   text-align: left;
   white-space: nowrap;
@@ -93,8 +91,7 @@ button {
   left: 174px;
   color: #000000;
   font-family: Jockey One, var(--default-font-family);
-  font-size: 25px;
-  font-weight: 400;
+
   line-height: 34.948px;
   text-align: left;
   white-space: nowrap;
@@ -110,8 +107,7 @@ button {
   left: 567px;
   color: #000000;
   font-family: Jockey One, var(--default-font-family);
-  font-size: 25px;
-  font-weight: 400;
+
   line-height: 34.948px;
   text-align: left;
   white-space: nowrap;
@@ -127,15 +123,113 @@ button {
   left: 0;
   color: #000000;
   font-family: Jockey One, var(--default-font-family);
-  font-size: 25px;
-  font-weight: 400;
+
   line-height: 34.948px;
   text-align: left;
   white-space: nowrap;
 }
 
-.time-line{
-    margin-left: 900px;
+.time-line {
+  margin-left: 900px;
+  display: inline-flex;
 }
 
+.rectanglePhone{
+  display: none;
+}
 
+@media (max-width: 1500px) {
+  .main-container {
+    display: grid;
+    grid-template-columns: 1fr; /* Single column for small screens */
+    grid-template-rows: auto auto; /* Adjust rows automatically */
+    gap: 10px;
+    height: 250px;
+    padding-bottom: 5px;
+    width: 1500px;
+  }
+
+  .rowinfo {
+    grid-row: 1; /* Place rowinfo in the first row */
+    grid-column: 1; /* Occupy the first column */
+    margin-bottom: 15px;
+    margin-top: 15px;
+  }
+
+  .time-line {
+    grid-row: 2; /* Place timeline in the second row */
+    grid-column: 1; /* Occupy the same column */
+    margin-left: 0; /* Remove the left margin */
+    justify-content: start; /* Align timeline content to the start */
+  }
+}
+
+@media (max-width: 450px) {
+  .main-container {
+    width: 400px;
+    font-size: 15px;
+  }
+
+  .rowinfo{
+    margin: 0;
+  }
+
+  
+  .no-case{
+    left: 15px;
+  }
+  .name{
+    left: 140px;
+  }
+
+  .no-track{
+    left: 280px;
+  }
+
+  .main-container {
+    width: 100%;
+    font-size: 15px;
+    display: grid;
+    grid-template-columns: 1fr; /* Single column for small screens */
+    grid-template-rows: auto auto auto; /* Three rows for the layout */
+    gap: 10px;
+    height: 350px; /* Ensure enough height for all rows */
+    margin-bottom: 20px;
+    padding-left: 30px;
+    
+    
+    
+  }
+
+  .rowinfo {
+    grid-row: 1; /* Place rowinfo in the first row */
+    grid-column: 1; /* Occupy the first column */
+    margin: 15px 0; /* Apply margin as needed */
+  }
+
+  .time-line {
+    grid-row: 2; /* Place time-line in the second row */
+    grid-column: 1; /* Occupy the same column */
+    margin-left: 0; /* Remove the left margin */
+    justify-content: start; /* Align timeline content to the start */
+  }
+
+  .rectangle{
+    display: none;
+  }
+
+  .rectanglePhone{
+    grid-row: 3; /* Place rectangle in the third row */
+    grid-column: 1; /* Occupy the same column */
+    width: 80px; /* Adjust width as needed */
+    height: 49px; /* Adjust height as needed */
+    background: #10e545;
+    /* Remove any absolute positioning styles */
+    margin: 0 auto; /* Center horizontally if needed */
+    display: block;
+    margin-left: 130px;
+  }
+
+
+
+}

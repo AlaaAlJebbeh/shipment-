@@ -24,13 +24,21 @@
   <div class="time-line-3">
     <!-- Display timeline image based on the current status -->
     @if(status() === 'delivered'){
-    <img src="deliveredtimeline.png" />
+    <img src="deliveredtimeline.png" class="image"/>
+    <img src="phoneDeliveredTimeLine.png" class="imageSmall"/>
+
     } @else if(status() === 'intransit'){
-    <img src="intransittimeline.png" />
+    <img src="intransittimeline.png" class="image"/>
+    <img src="phoneInTransitTimeLine.png" class="imageSmall"/>
+
     } @else if(status() === 'outfordelivery'){
-    <img src="outfordeliverytimeline.png" />
+    <img src="outfordeliverytimeline.png" class="image"/>
+    <img src="phoneOutForDeliveryTimeLine.png" class="imageSmall"/>
+
     } @else {
-    <img src="shippingtimeline.png" />
+    <img src="shippingtimeline.png" class="image" />
+    <img src="phoneShippingTimeLine.png" class="imageSmall"/>
+
     }
   </div>
   <div class="flex-row-ec">

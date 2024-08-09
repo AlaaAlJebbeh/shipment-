@@ -26,6 +26,7 @@ button {
   width: 537px;
   height: 115px;
   margin: 0 auto;
+  margin-left: 190px;
 }
 .flex-row-c {
   display: flex;
@@ -36,6 +37,8 @@ button {
   height: 28px;
   margin: 0 0 0 0;
   z-index: 4;
+  font-size: 20px;
+  font-weight: 400;
 }
 .date {
   flex-shrink: 0;
@@ -43,8 +46,6 @@ button {
   height: 28px;
   color: #000000;
   font-family: Jockey One, var(--default-font-family);
-  font-size: 20px;
-  font-weight: 400;
   line-height: 27.959px;
   text-align: left;
   white-space: nowrap;
@@ -57,8 +58,6 @@ button {
   height: 28px;
   color: #000000;
   font-family: Jockey One, var(--default-font-family);
-  font-size: 20px;
-  font-weight: 400;
   line-height: 27.959px;
   text-align: left;
   white-space: nowrap;
@@ -72,8 +71,6 @@ button {
   height: 28px;
   color: #000000;
   font-family: Jockey One, var(--default-font-family);
-  font-size: 20px;
-  font-weight: 400;
   line-height: 27.959px;
   text-align: left;
   white-space: nowrap;
@@ -86,8 +83,6 @@ button {
   height: 28px;
   color: #000000;
   font-family: Jockey One, var(--default-font-family);
-  font-size: 20px;
-  font-weight: 400;
   line-height: 27.959px;
   text-align: left;
   white-space: nowrap;
@@ -106,6 +101,8 @@ button {
   height: 28px;
   margin: 9px 0 0 12px;
   z-index: 8;
+  font-size: 20px;
+  font-weight: 400;
 }
 .shipping {
   display: flex;
@@ -117,8 +114,7 @@ button {
   left: 0;
   color: #000000;
   font-family: Jockey One, var(--default-font-family);
-  font-size: 20px;
-  font-weight: 400;
+
   line-height: 27.959px;
   text-align: left;
   white-space: nowrap;
@@ -134,8 +130,6 @@ button {
   left: 145px;
   color: #000000;
   font-family: Jockey One, var(--default-font-family);
-  font-size: 20px;
-  font-weight: 400;
   line-height: 27.959px;
   text-align: left;
   white-space: nowrap;
@@ -151,8 +145,6 @@ button {
   left: 271px;
   color: #000000;
   font-family: Jockey One, var(--default-font-family);
-  font-size: 20px;
-  font-weight: 400;
   line-height: 27.959px;
   text-align: left;
   white-space: nowrap;
@@ -168,8 +160,6 @@ button {
   left: 444px;
   color: #000000;
   font-family: Jockey One, var(--default-font-family);
-  font-size: 20px;
-  font-weight: 400;
   line-height: 27.959px;
   text-align: left;
   white-space: nowrap;
@@ -178,4 +168,66 @@ button {
 
 .hidden {
   visibility: hidden;
+}
+
+
+.image{
+  display: block;
+}
+
+.imageSmall{
+  display: none;
+}
+
+@media (max-width: 450px) {
+  .main-container {
+    margin-left: 10px;
+  }
+
+  .image{
+    display: none;
+  }
+
+  .imageSmall{
+    display: block;
+    margin-left: -20px;
+  }
+
+  .flex-row-ec {
+    font-size: 15px;
+    margin-left: -5px;
+  }
+
+  .shipping{
+    left:10px;
+  }
+
+  .in-transit{
+    left: 100px;
+  }
+
+  .out-for-delivery{
+    left: 190px;
+  }
+
+  .delivered{
+    left: 320px;
+  }
+
+  .flex-row-c {
+    font-size: 15px;
+  }
+
+  .date-1{
+    left: -40px;
+  }
+
+  .date-2{
+    left: -80px;
+  }
+
+  .time-line{
+    left: -130px;
+  }
+
 }

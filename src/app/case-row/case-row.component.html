@@ -1,30 +1,39 @@
-<div>
-  <div class="main-container">
-    <div class="rowinfo">
-      <div class="rectangle">
-        <!-- Conditional rendering of images based on status -->
-        @if(status() === 'delivered'){
-        <img src="delivered.png" />
-        } @else if(status() === 'notfound'){
-        <img src="notfoundstatus.png" />
-        } @else {
-        <img src="shipped.png" />
-        }
-      </div>
-      <span class="name">{{ patientName() }}</span
-      ><span class="no-track">{{ trackingNumber() }}</span
-      ><span class="no-case">{{ caseNumber() }}</span>
+<div class="main-container">
+  <div class="rowinfo">
+    <div class="rectangle">
+      <!-- Conditional rendering of images based on status -->
+      @if(status() === 'delivered'){
+      <img src="delivered.png" />
+      } @else if(status() === 'notfound'){
+      <img src="notfoundstatus.png" />
+      } @else {
+      <img src="shipped.png" />
+      }
     </div>
+    <span class="name">{{ patientName() }}</span
+    ><span class="no-track">{{ trackingNumber() }}</span
+    ><span class="no-case">{{ caseNumber() }}</span>
+  </div>
 
-    <!-- Timeline component displayed if status is not 'notfound' -->
-    @if(status() !== 'notfound'){
-    <div class="time-line">
-      <app-time-line
-        [trackingNumber]="trackingNumber()"
-        (statusOut)="handleStatusChange($event)"
-      />
-    </div>
+  <!-- Timeline component displayed if status is not 'notfound' -->
+  @if(status() !== 'notfound'){
+  <div class="time-line">
+    <app-time-line
+      [trackingNumber]="trackingNumber()"
+      (statusOut)="handleStatusChange($event)"
+    />
+  </div>
 
+  }
+
+  <div class="rectanglePhone">
+    <!-- Conditional rendering of images based on status -->
+    @if(status() === 'delivered'){
+    <img src="delivered.png" />
+    } @else if(status() === 'notfound'){
+    <img src="notfoundstatus.png" />
+    } @else {
+    <img src="shipped.png" />
     }
   </div>
 </div>
