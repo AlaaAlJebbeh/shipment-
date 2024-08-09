@@ -39,12 +39,11 @@ These instructions will get you a copy of the project up and running on your loc
 Open Terminal/Command Prompt
 Clone the Repository: git clone <https://github.com/AlaaAlJebbeh/shipment-.git>
 
-
 ### Prerequisites
+
 Node.js
 npm
 Angular CLI
-
 
 ### Installing
 
@@ -64,7 +63,7 @@ npm -v
 These commands will display the installed versions of Node.js and npm.
 
 3. Install Angular CLI
-Angular CLI is a command-line interface for Angular.
+   Angular CLI is a command-line interface for Angular.
 
 Install Angular CLI Globally:
 
@@ -79,13 +78,13 @@ ng version
 This command will display the installed version of Angular CLI.
 
 4. Install Project Dependencies
-Install Project Dependencies Using npm:
-bash
-Copy code
-npm install
-This command will read the package.json file and install all the dependencies required for the project.
+   Install Project Dependencies Using npm:
+   bash
+   Copy code
+   npm install
+   This command will read the package.json file and install all the dependencies required for the project.
 5. Run the Angular Project
-Start the Development Server:
+   Start the Development Server:
 
 bash
 Copy code
@@ -94,12 +93,9 @@ By default, this will serve the project at http://localhost:4200/.
 
 Open a Browser and Navigate to http://localhost:4200/ to view the running application.
 
-
-
 ## 🎈 Usage <a name="usage"></a>
 
 Add notes about how to use the system.
-
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
@@ -110,5 +106,3 @@ Add notes about how to use the system.
 - [@AlaaAlJebbeh](https://github.com/AlaaAlJebbeh) - Initial work
 
 See also the list of [contributors](Mr.Yaseen) who participated in this project.
-
-

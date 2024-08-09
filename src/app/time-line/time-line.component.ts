@@ -102,7 +102,7 @@ export class TimeLineComponent implements OnInit {
 
   fetchTrackingDetails() {
     console.log('updated 5 min');
-
+  
     this.apiService.getTrackingDetails(this.trackingNumber()).subscribe({
       next: (response) => {
         this.trackingData = response;
@@ -113,31 +113,59 @@ export class TimeLineComponent implements OnInit {
         ) {
           const originInfo = this.trackingData.data[0].origin_info;
           const milestoneDates = originInfo ? originInfo.milestone_date : {};
-
+  
           // Extracting and formatting specific dates
-          this.deliveredDate = this.formatDate(milestoneDates.delivery_date);
-          this.outForDeliveryDate = this.formatDate(
-            milestoneDates.outfordelivery_date
-          );
           this.shippingDate = this.formatDate(milestoneDates.pickup_date);
           this.inTransitDate = this.getInTransitDate(originInfo.trackinfo);
-
+  
           if (this.trackingNumber().length === 10) {
             this.outForDeliveryDate = this.getOutForDeliveryDateFromTrackInfo(
               originInfo.trackinfo,
               this.trackingData.data[0].destination_country
             );
+          } else {
+            this.outForDeliveryDate = this.formatDate(milestoneDates.outfordelivery_date);
           }
-
+  
+          // Handling the delivered date based on country_iso2
+          const deliveredCheckpoint = originInfo.trackinfo.find(
+            (track: { checkpoint_delivery_status: string }) => 
+              track.checkpoint_delivery_status === 'delivered'
+          );
+  
+          if (deliveredCheckpoint) {
+            const { country_iso2 } = deliveredCheckpoint;
+  
+            if (['KW', 'UAE', 'BH'].includes(country_iso2)) {
+              let deliveredDate = new Date(milestoneDates.delivery_date);
+              deliveredDate.setDate(deliveredDate.getDate() + 2);
+  
+              const currentDate = new Date();
+              if (deliveredDate > currentDate) {
+                const checkInterval = setInterval(() => {
+                  const now = new Date();
+                  if (now >= deliveredDate) {
+                    clearInterval(checkInterval);
+                    this.deliveredDate = this.formatDate(deliveredDate.toISOString());
+                  }
+                }, 1000); // Check every second
+              } else {
+                this.deliveredDate = this.formatDate(deliveredDate.toISOString());
+              }
+            } else {
+              this.deliveredDate = this.formatDate(milestoneDates.delivery_date);
+            }
+          } else {
+            this.deliveredDate = this.formatDate(milestoneDates.delivery_date);
+          }
+  
           console.log('Delivery Date:', this.deliveredDate);
           console.log('Out for Delivery Date:', this.outForDeliveryDate);
           console.log('Pickup Date:', this.shippingDate);
           console.log('Info Received Date:', this.inTransitDate);
-
+  
           this.updateStatus();
-          console.log(
-            'the status in time line after update is' + this.status()
-          );
+          console.log('the status in time line after update is' + this.status());
           this.statusOut.emit(this.status());
         } else {
           console.log('No tracking data available.');
@@ -149,6 +177,7 @@ export class TimeLineComponent implements OnInit {
       },
     });
   }
+  
 
   /**
    * Formats a date string into a specific format (DD/MM/YYYY).
@@ -215,7 +244,12 @@ export class TimeLineComponent implements OnInit {
    */
 
   updateStatus(): void {
-    if (this.deliveredDate) {
+    const today = new Date();
+  
+    // Convert deliveredDate to Date object if it exists
+    const deliveredDateObj = this.deliveredDate ? this.parseDate(this.deliveredDate) : null;
+  
+    if (deliveredDateObj && deliveredDateObj <= today) {
       this.status.set('delivered');
     } else if (this.outForDeliveryDate) {
       this.status.set('outfordelivery');
@@ -226,6 +260,14 @@ export class TimeLineComponent implements OnInit {
     } else {
       this.status.set('notfound');
     }
+  }
+  
+  /**
+   * Helper function to parse a date string in the format DD/MM/YYYY to a Date object.
+   */
+  parseDate(dateString: string): Date | null {
+    const [day, month, year] = dateString.split('/').map(Number);
+    return new Date(year, month - 1, day);
   }
 
   handleSearchData(datainput: string) {
