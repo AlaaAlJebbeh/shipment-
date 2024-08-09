@@ -134,7 +134,7 @@ button {
   display: inline-flex;
 }
 
-.rectanglePhone{
+.rectanglePhone {
   display: none;
 }
 
@@ -170,20 +170,19 @@ button {
     font-size: 15px;
   }
 
-  .rowinfo{
+  .rowinfo {
     margin: 0;
   }
 
-  
-  .no-case{
-    left: 15px;
+  .no-case {
+    left: 10px;
   }
-  .name{
-    left: 140px;
+  .name {
+    left: 130px;
   }
 
-  .no-track{
-    left: 280px;
+  .no-track {
+    left: 265px;
   }
 
   .main-container {
@@ -191,20 +190,17 @@ button {
     font-size: 15px;
     display: grid;
     grid-template-columns: 1fr; /* Single column for small screens */
-    grid-template-rows: auto auto auto; /* Three rows for the layout */
+    grid-template-rows: auto auto; /* Three rows for the layout */
     gap: 10px;
-    height: 350px; /* Ensure enough height for all rows */
+    height: 190px; /* Ensure enough height for all rows */
     margin-bottom: 20px;
-    padding-left: 30px;
-    
-    
-    
+    padding-left: 10px;
   }
 
   .rowinfo {
     grid-row: 1; /* Place rowinfo in the first row */
     grid-column: 1; /* Occupy the first column */
-    margin: 15px 0; /* Apply margin as needed */
+    margin: -45px 0; /* Apply margin as needed */
   }
 
   .time-line {
@@ -214,22 +210,54 @@ button {
     justify-content: start; /* Align timeline content to the start */
   }
 
-  .rectangle{
+  .rectangle {
     display: none;
   }
+}
 
-  .rectanglePhone{
-    grid-row: 3; /* Place rectangle in the third row */
-    grid-column: 1; /* Occupy the same column */
-    width: 80px; /* Adjust width as needed */
-    height: 49px; /* Adjust height as needed */
-    background: #10e545;
-    /* Remove any absolute positioning styles */
-    margin: 0 auto; /* Center horizontally if needed */
-    display: block;
-    margin-left: 130px;
+@media (max-width: 320px) {
+
+  .rowinfo {
+    margin: 0;
   }
 
+  .no-case {
+    left: 7px;
+  }
+  .name {
+    left: 115px;
+  }
 
+  .no-track {
+    left: 225px;
+  }
 
+  .main-container {
+    width: 100%;
+    font-size: 13px;
+    display: grid;
+    grid-template-columns: 1fr; /* Single column for small screens */
+    grid-template-rows: auto auto; /* Three rows for the layout */
+    gap: 10px;
+    height: 190px; /* Ensure enough height for all rows */
+    margin-bottom: 20px;
+    padding-left: 10px;
+  }
+
+  .rowinfo {
+    grid-row: 1; /* Place rowinfo in the first row */
+    grid-column: 1; /* Occupy the first column */
+    margin: -45px 0; /* Apply margin as needed */
+  }
+
+  .time-line {
+    grid-row: 2; /* Place time-line in the second row */
+    grid-column: 1; /* Occupy the same column */
+    margin-left: 0; /* Remove the left margin */
+    justify-content: start; /* Align timeline content to the start */
+  }
+
+  .rectangle {
+    display: none;
+  }
 }

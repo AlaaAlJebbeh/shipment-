@@ -62,7 +62,6 @@ button {
   text-align: left;
   white-space: nowrap;
   z-index: 2;
-
 }
 .date-2 {
   flex-shrink: 0;
@@ -170,12 +169,15 @@ button {
   visibility: hidden;
 }
 
-
-.image{
+.image {
   display: block;
 }
 
-.imageSmall{
+.imageSmall {
+  display: none;
+}
+
+.smallest {
   display: none;
 }
 
@@ -184,13 +186,17 @@ button {
     margin-left: 10px;
   }
 
-  .image{
+  .image {
     display: none;
   }
 
-  .imageSmall{
+  .imageSmall {
     display: block;
     margin-left: -20px;
+  }
+
+  .smallest {
+    display: none;
   }
 
   .flex-row-ec {
@@ -198,36 +204,117 @@ button {
     margin-left: -5px;
   }
 
-  .shipping{
-    left:10px;
+  .delivered {
+    display: none;
   }
 
-  .in-transit{
+  .shipping {
+    left: 10px;
+  }
+
+  .in-transit {
     left: 100px;
   }
 
-  .out-for-delivery{
+  .out-for-delivery {
     left: 190px;
   }
 
-  .delivered{
+  .delivered {
     left: 320px;
   }
 
   .flex-row-c {
-    font-size: 15px;
+    font-size: 12px;
+    margin-bottom: 3px;
   }
 
-  .date-1{
+  .date {
+    top: 15px;
+  }
+
+  .date-1 {
     left: -40px;
+    top: 15px;
   }
 
-  .date-2{
+  .date-2 {
     left: -80px;
+    top: 15px;
   }
 
-  .time-line{
+  .time-line {
     left: -130px;
+    top: 15px;
+  }
+}
+
+@media (max-width: 320px) {
+  .main-container {
+    margin-left: 10px;
   }
 
+  .image {
+    display: none;
+  }
+
+  .imageSmall {
+    display: none;
+    margin-left: -20px;
+  }
+
+  .smallest {
+    display: block;
+    margin-left: -10px;
+  }
+
+  .flex-row-ec {
+    font-size: 10px;
+    margin-left: -5px;
+    margin-top: 12px;
+  }
+
+  .delivered {
+    display: none;
+  }
+
+  .shipping {
+    left: 10px;
+  }
+
+  .in-transit {
+    left: 100px;
+  }
+
+  .out-for-delivery {
+    left: 170px;
+  }
+
+  .delivered {
+    left: 320px;
+  }
+
+  .flex-row-c {
+    font-size: 10px;
+    margin-bottom: 3px;
+  }
+
+  .date {
+    top: 15px;
+  }
+
+  .date-1 {
+    left: -60px;
+    top: 15px;
+  }
+
+  .date-2 {
+    left: -120px;
+    top: 15px;
+  }
+
+  .time-line {
+    left: -190px;
+    top: 15px;
+  }
 }

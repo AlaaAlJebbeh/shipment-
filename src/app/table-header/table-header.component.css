@@ -105,23 +105,48 @@
     font-size: 15px;
     padding: 0px;
   }
-  
-  .no-case{
+
+  .no-case {
     left: 15px;
   }
-  .name{
+  .name {
     left: 140px;
   }
 
-  .status{
+  .status {
     left: 220px;
     top: 12px;
     visibility: hidden;
   }
 
-  .no-track{
+  .no-track {
     left: 270px;
   }
+}
 
-  
+
+@media (max-width: 320px) {
+  .table-header {
+    width: 350px;
+    margin: 0px;
+    font-size: 11px;
+    padding: 0px;
+  }
+
+  .no-case {
+    left: 15px;
+  }
+  .name {
+    left: 125px;
+  }
+
+  .status {
+    left: 220px;
+    top: 12px;
+    visibility: hidden;
+  }
+
+  .no-track {
+    left: 230px;
+  }
 }

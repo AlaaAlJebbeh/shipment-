@@ -1,10 +1,6 @@
 <div class="main-container">
-  <div class="table-title-case">
-    <div class="rectangle">
-      <div class="search-1"> <img src="Search.png"/></div>
-      <form [formGroup]="searchForm" (ngSubmit)="onSubmitSearch()">
-        <input class="searchdata" type="text" formControlName="searchData"/>
-      </form>
-    </div>
-  </div>
+  <div class="searchIcon"><img src="Search.png" /></div>
+  <form [formGroup]="searchForm" (ngSubmit)="onSubmitSearch()">
+    <input class="searchdata" type="text" formControlName="searchData" />
+  </form>
 </div>

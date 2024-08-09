@@ -26,18 +26,26 @@
     @if(status() === 'delivered'){
     <img src="deliveredtimeline.png" class="image"/>
     <img src="phoneDeliveredTimeLine.png" class="imageSmall"/>
+    <img src="deliveredSS.png" class="smallest"/>
 
     } @else if(status() === 'intransit'){
     <img src="intransittimeline.png" class="image"/>
     <img src="phoneInTransitTimeLine.png" class="imageSmall"/>
+    <img src="inTransitSS.png" class="smallest"/>
+
+    
 
     } @else if(status() === 'outfordelivery'){
     <img src="outfordeliverytimeline.png" class="image"/>
     <img src="phoneOutForDeliveryTimeLine.png" class="imageSmall"/>
+    <img src="outForDeliverySS.png" class="smallest"/>
+
 
     } @else {
     <img src="shippingtimeline.png" class="image" />
     <img src="phoneShippingTimeLine.png" class="imageSmall"/>
+    <img src="shippingSS.png" class="smallest"/>
+
 
     }
   </div>
